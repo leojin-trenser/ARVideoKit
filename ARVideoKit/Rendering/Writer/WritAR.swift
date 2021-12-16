@@ -57,7 +57,7 @@ class WritAR: NSObject, AVCaptureAudioDataOutputSampleBufferDelegate {
             AVVideoHeightKey: height as AnyObject
         ]
         
-        let attributes: [String: Bool] = [
+        _ = [
             kCVPixelBufferCGImageCompatibilityKey as String: true,
             kCVPixelBufferCGBitmapContextCompatibilityKey as String: true
         ]
@@ -146,7 +146,7 @@ class WritAR: NSObject, AVCaptureAudioDataOutputSampleBufferDelegate {
         }
         
 
-        audioSettings = audioDataOutput.recommendedAudioSettingsForAssetWriter(writingTo: .m4v) as? [String: Any]
+        audioSettings = audioDataOutput.recommendedAudioSettingsForAssetWriter(writingTo: .m4v)
         
         audioInput = AVAssetWriterInput(mediaType: .audio, outputSettings: audioSettings)
         audioInput.expectsMediaDataInRealTime = true

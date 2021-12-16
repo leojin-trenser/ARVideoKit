@@ -425,7 +425,7 @@
 					"$(PROJECT_DIR)/Framework",
 				);
 				INFOPLIST_FILE = "ARVideoKit-Example/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ahmedbekhit.ARVideoKit-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -447,7 +447,7 @@
 					"$(PROJECT_DIR)/Framework",
 				);
 				INFOPLIST_FILE = "ARVideoKit-Example/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ahmedbekhit.ARVideoKit-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
