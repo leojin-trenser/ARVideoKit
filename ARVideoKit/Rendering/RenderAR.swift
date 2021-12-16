@@ -12,13 +12,15 @@ import ARKit
 @available(iOS 11.0, *)
 struct RenderAR {
     private var view: Any?
+    private var sourceView: UIView?
     private var renderEngine: SCNRenderer!
     var ARcontentMode: ARFrameMode!
     
-    init(_ ARview: Any?, renderer: SCNRenderer, contentMode: ARFrameMode) {
+    init(_ ARview: Any?, renderer: SCNRenderer, contentMode: ARFrameMode, sourceView: UIView? = nil) {
         view = ARview
         renderEngine = renderer
         ARcontentMode = contentMode
+        self.sourceView = sourceView
     }
     
     let pixelsQueue = DispatchQueue(label: "com.ahmedbekhit.PixelsQueue", attributes: .concurrent)
@@ -95,11 +97,13 @@ struct RenderAR {
             pixelsQueue.sync {
                 renderedFrame = renderEngine.snapshot(atTime: self.time, with: size, antialiasingMode: .none)
             }
-            if let _ = renderedFrame {
-            } else {
+            if renderedFrame == nil {
                 renderedFrame = renderEngine.snapshot(atTime: time, with: size, antialiasingMode: .none)
             }
-            guard let buffer = renderedFrame!.buffer else { return nil }
+            if let sourceView = sourceView {
+                renderedFrame = sourceView.renderImage(renderedFrame)
+            }
+            guard let buffer = renderedFrame?.buffer else { return nil }
             return buffer
         } else if view is ARSKView {
             guard let size = bufferSize else { return nil }

@@ -129,8 +129,9 @@ import PhotosUI
     /**
      Initialize 🌞🍳 `RecordAR` with an `ARSCNView` 🚀.
      */
-    @objc override public init?(ARSceneKit: ARSCNView) {
+    @objc public init?(ARSceneKit: ARSCNView, sourceView: UIView? = nil) {
         super.init(ARSceneKit: ARSceneKit)
+        self.sourceView = sourceView
         view = ARSceneKit
         setup()
     }
@@ -169,6 +170,7 @@ import PhotosUI
     
     //MARK: - Objects
     private var view: Any?
+    private var sourceView: UIView?
     private var renderEngine: SCNRenderer!
     private var gpuLoop: CADisplayLink!
     private var isResting = false
@@ -281,7 +283,7 @@ import PhotosUI
         
         onlyRenderWhileRec = onlyRenderWhileRecording
         
-        renderer = RenderAR(view, renderer: renderEngine, contentMode: contentMode)
+        renderer = RenderAR(view, renderer: renderEngine, contentMode: contentMode, sourceView: sourceView)
 
         NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterBackground), name: UIApplication.willResignActiveNotification, object: nil)
     }

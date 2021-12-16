@@ -38,4 +38,13 @@ extension UIView {
     var isARView: Bool {
         return (self is ARSCNView) || (self is ARSKView)
     }
+    
+    func renderImage(_ bottomImage: UIImage?) -> UIImage? {
+        let bounds = CGRect(origin: .zero, size: bottomImage?.size ?? bounds.size)
+        UIGraphicsBeginImageContextWithOptions(bounds.size, false, 1.0)
+        defer { UIGraphicsEndImageContext() }
+        bottomImage?.draw(in: bounds)
+        drawHierarchy(in: bounds, afterScreenUpdates: false)
+        return UIGraphicsGetImageFromCurrentImageContext()
+    }
 }
