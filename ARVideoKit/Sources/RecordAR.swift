@@ -296,7 +296,11 @@ import PhotosUI
     /// A method that renders a photo 🌄 and returns it as `UIImage`.
     @objc public func photo() -> UIImage {
         if let buffer = renderer.buffer {
-            return imageFromBuffer(buffer: buffer)
+            let capturedImage = imageFromBuffer(buffer: buffer)
+            if let sourceView = sourceView {
+                return sourceView.renderImage(capturedImage) ?? capturedImage
+            }
+            return capturedImage
         }
         return UIImage()
     }
